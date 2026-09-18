@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1920, height=1080" />
+<title>Senior RAG Showcase — brag</title>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+  @font-face { font-family: "Fraunces"; font-weight: 600; src: url("assets/fonts/Fraunces-SemiBold.ttf") format("truetype"); }
+  @font-face { font-family: "Inter"; font-weight: 500; src: url("assets/fonts/Inter-Medium.woff2") format("woff2"); }
+  body { margin: 0; background: #FAF7F1; color: #1C1917; font-family: "Inter", system-ui, sans-serif; }
+  #root { position: relative; width: 100%; height: 100%; overflow: hidden; }
+  .clip { position: absolute; inset: 0; }
+  .paper { background: #FAF7F1; }
+  .ink { background: #1C1917; }
+  .serif { font-family: "Fraunces", Georgia, serif; }
+  .center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .hook1 { font-size: 64px; font-weight: 500; color: #57534E; }
+  .hook2 { font-size: 104px; font-weight: 600; color: #1C1917; margin-top: 12px; }
+  .hook2 em { font-style: normal; color: #1F3D2B; }
+  .console { position: absolute; left: 360px; top: 150px; width: 1200px; height: 780px; background: #FFFFFF; border: 2px solid #E7E0D4; border-radius: 28px; overflow: hidden; }
+  .chead { height: 110px; background: #1C1917; color: #FAF7F1; display: flex; align-items: center; gap: 24px; padding: 0 48px; }
+  .cdot { width: 56px; height: 56px; border-radius: 14px; background: #FAF7F1; color: #1C1917; font-family: "Fraunces", Georgia, serif; font-size: 36px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+  .ctitle { font-family: "Fraunces", Georgia, serif; font-size: 44px; font-weight: 600; }
+  .cbody { padding: 40px 48px; }
+  .bubble { background: #1F3D2B; color: #FFFFFF; font-size: 34px; border-radius: 24px; padding: 28px 36px; max-width: 900px; margin-left: auto; }
+  .tstep { display: flex; align-items: center; gap: 20px; font-size: 30px; color: #44403C; background: #FAF7F1; border: 2px solid #E7E0D4; border-radius: 16px; padding: 16px 28px; margin-top: 18px; max-width: 760px; }
+  .tdot { width: 22px; height: 22px; border-radius: 50%; background: #1F3D2B; flex: none; }
+  .answer { background: #FFFFFF; border: 2px solid #E7E0D4; border-radius: 20px; padding: 24px 32px; font-size: 30px; margin-top: 22px; max-width: 980px; }
+  .chips { display: flex; gap: 14px; margin-top: 18px; }
+  .chip { font-family: ui-monospace, monospace; font-size: 24px; background: #FAF7F1; border: 2px solid #E7E0D4; border-radius: 12px; padding: 10px 20px; }
+  .mschip { font-size: 24px; font-weight: 600; background: #1F3D2B; color: #FFFFFF; border-radius: 999px; padding: 12px 28px; margin-top: 18px; display: inline-block; }
+  .gnode { font-size: 26px; font-weight: 600; color: #1F3D2B; border: 3px solid #1F3D2B; border-radius: 999px; padding: 10px 26px; background: #FFFFFF; white-space: nowrap; }
+  .gedge { display: inline-block; width: 64px; height: 4px; background: #1F3D2B; border-radius: 2px; flex: none; }
+  .brag-ch { opacity: 0; }
+  #brag-caret { display: inline-block; width: 4px; height: 40px; background: #FFFFFF; vertical-align: -6px; margin-left: 4px; }
+  .beircap { margin-top: 28px; font-size: 30px; color: #A8A29E; letter-spacing: 1px; }
+  #traceglow { position: absolute; left: 330px; top: 60px; width: 1260px; height: 960px; border-radius: 48px; background: #1F3D2B; opacity: 0; }
+  .bignum { font-family: "Fraunces", Georgia, serif; font-size: 120px; font-weight: 600; color: #FAF7F1; }
+  .bignum small { font-size: 44px; color: #A8A29E; font-family: "Inter", system-ui, sans-serif; }
+  .passbadge { margin-top: 36px; font-size: 40px; font-weight: 600; color: #1C1917; background: #B45309; border-radius: 999px; padding: 22px 64px; }
+  .outro { font-family: "Fraunces", Georgia, serif; font-size: 110px; font-weight: 600; color: #1C1917; }
+  .slug { margin-top: 20px; font-size: 36px; color: #57534E; letter-spacing: 4px; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="brag" data-start="0" data-width="1920" data-height="1080" data-duration="21.5">
+
+  <!-- S1 hook 0-3 -->
+  <section id="brag-s1" class="clip paper" data-start="0" data-duration="3">
+    <div class="center">
+      <div id="brag-hook1" class="hook1">Most RAG demos are API wrappers.</div>
+      <div id="brag-hook2" class="hook2 serif">This one survived <em>SIX HOSTILE REVIEWS.</em></div>
+    </div>
+  </section>
+
+  <!-- S2 console reveal 3-7 -->
+  <section id="brag-s2" class="clip paper" data-start="3" data-duration="4">
+    <div id="brag-console" class="console">
+      <div class="chead"><div class="cdot">M</div><div class="ctitle">RAG Retrieval Console</div></div>
+      <div class="cbody">
+        <div id="brag-bubble" class="bubble"><span id="brag-typed"><span class="brag-ch">W</span><span class="brag-ch">h</span><span class="brag-ch">i</span><span class="brag-ch">c</span><span class="brag-ch">h</span><span class="brag-ch"> </span><span class="brag-ch">s</span><span class="brag-ch">u</span><span class="brag-ch">p</span><span class="brag-ch">p</span><span class="brag-ch">l</span><span class="brag-ch">i</span><span class="brag-ch">e</span><span class="brag-ch">r</span><span class="brag-ch"> </span><span class="brag-ch">p</span><span class="brag-ch">r</span><span class="brag-ch">o</span><span class="brag-ch">v</span><span class="brag-ch">i</span><span class="brag-ch">d</span><span class="brag-ch">e</span><span class="brag-ch">s</span><span class="brag-ch"> </span><span class="brag-ch">t</span><span class="brag-ch">h</span><span class="brag-ch">e</span><span class="brag-ch"> </span><span class="brag-ch">c</span><span class="brag-ch">o</span><span class="brag-ch">m</span><span class="brag-ch">p</span><span class="brag-ch">o</span><span class="brag-ch">n</span><span class="brag-ch">e</span><span class="brag-ch">n</span><span class="brag-ch">t</span><span class="brag-ch"> </span><span class="brag-ch">u</span><span class="brag-ch">s</span><span class="brag-ch">e</span><span class="brag-ch">d</span><span class="brag-ch"> </span><span class="brag-ch">i</span><span class="brag-ch">n</span><span class="brag-ch"> </span><span class="brag-ch">P</span><span class="brag-ch">r</span><span class="brag-ch">o</span><span class="brag-ch">d</span><span class="brag-ch">u</span><span class="brag-ch">c</span><span class="brag-ch">t</span><span class="brag-ch"> </span><span class="brag-ch">X</span><span class="brag-ch">?</span></span><span id="brag-caret"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S3 trace run 7-12 -->
+  <section id="brag-s3" class="clip paper" data-start="7" data-duration="5.5">
+    <div id="traceglow"></div>
+    <div id="brag-console2" class="console" style="height:900px; top:90px;">
+      <div class="chead"><div class="cdot">M</div><div class="ctitle">RAG Retrieval Console</div></div>
+      <div class="cbody">
+        <div id="brag-t1" class="tstep"><span class="tdot"></span>plan → multi-hop entities detected</div>
+        <div id="brag-t2" class="tstep"><span class="tdot"></span>hybrid: BM25 + dense, RRF fused</div>
+        <div id="brag-t3" class="tstep"><span class="tdot"></span>graph: Product X → XK-7 → Nordwerk</div>
+        <div id="brag-t4" class="tstep"><span class="tdot"></span>rerank: cross-encoder, top 5 kept</div>
+        <div id="brag-graph" style="display:flex; align-items:center; gap:12px; margin-top:18px;">
+          <span id="brag-g1" class="gnode">Product X</span><span id="brag-ge1" class="gedge"></span><span id="brag-g2" class="gnode">XK-7</span><span id="brag-ge2" class="gedge"></span><span id="brag-g3" class="gnode">Nordwerk</span>
+        </div>
+        <div id="brag-ans" class="answer">Nordwerk Precision — XK-7 rev C certified.</div>
+        <div id="brag-chips" class="chips"><span class="chip">[supplier_registry.md]</span><span class="chip">[product_catalog.md]</span></div>
+        <div id="brag-ms" class="mschip">p50 33 ms · gate PASS</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S4 numbers 12.5-17.5 (PASS badge holds into outro) -->
+  <section id="brag-s4" class="clip ink" data-start="12.5" data-duration="5">
+    <div class="center">
+      <div id="brag-num" class="bignum" data-layout-allow-overlap="true" style="position:relative;"><span id="brag-numold">dense-only recall 0.41</span><span id="brag-numval" style="position:absolute; left:0; right:0; top:0; opacity:0;">hybrid recall 0.91</span><br /><small>hybrid + rerank</small></div>
+      <div id="brag-beir" class="beircap" style="opacity:0;">BEIR SciFact nDCG@10 · 0.659 — matches ColBERT</div>
+    </div>
+  </section>
+  <!-- S5 outro 17.5-21.5 -->
+  <section id="brag-s5" class="clip paper" data-start="17.5" data-duration="4">
+    <div class="center">
+      <div id="brag-outro" class="outro serif">Measured, not claimed.</div>
+      <div id="brag-slug" class="slug">SENIOR RAG SHOWCASE</div>
+    </div>
+  </section>
+
+  <!-- PASS badge: after S5 in DOM so it layers above the outro card -->
+  <div id="brag-passwrap" class="clip" data-start="17" data-duration="3.8" style="display:flex; align-items:flex-start; justify-content:center; padding-top:640px;">
+    <div id="brag-pass" class="passbadge">PASS · 16 questions · 1,874 docs</div>
+  </div>
+
+  <audio id="brag-music" data-start="0" data-duration="21.5" data-volume="0.7" src="assets/music/happy-beats-business-moves-vol-1-by-ende-dot-app.mp3"></audio>
+  <audio id="brag-sfx1" data-start="1.3" src="assets/sfx/keyboard/keypress-010.wav"></audio>
+  <audio id="brag-sfx2" data-start="3.4" src="assets/sfx/ui/click1.ogg"></audio>
+  <audio id="brag-sfx3" data-start="4.4" src="assets/sfx/ui/click2.ogg"></audio>
+  <audio id="brag-sfx4" data-start="7.5" src="assets/sfx/interface/click_002.ogg"></audio>
+  <audio id="brag-sfx5" data-start="8.5" src="assets/sfx/interface/click_003.ogg"></audio>
+  <audio id="brag-sfx6" data-start="9.5" src="assets/sfx/interface/click_004.ogg"></audio>
+  <audio id="brag-sfx7" data-start="10.5" src="assets/sfx/interface/switch_001.ogg"></audio>
+  <audio id="brag-sfx8" data-start="11.3" src="assets/sfx/interface/select_008.ogg"></audio>
+  <audio id="brag-sfx9" data-start="13.0" src="assets/sfx/impact/impactGlass_light_002.ogg"></audio>
+  <audio id="brag-sfx10" data-start="17.0" data-volume="0.5" src="assets/sfx/impact/impactBell_heavy_003.ogg"></audio>
+  <audio id="brag-w1" data-start="3.0" data-volume="0.35" src="assets/sfx/impact/impactSoft_medium_001.ogg"></audio>
+  <audio id="brag-w2" data-start="7.0" data-volume="0.35" src="assets/sfx/impact/impactSoft_medium_003.ogg"></audio>
+  <audio id="brag-w3" data-start="12.5" data-volume="0.35" src="assets/sfx/impact/impactSoft_medium_001.ogg"></audio>
+  <audio id="brag-w4" data-start="17.5" data-volume="0.35" src="assets/sfx/impact/impactSoft_medium_003.ogg"></audio>
+
+<script>
+const RMS_OK = true;
+(function () {
+  const tl = gsap.timeline({ paused: true });
+  // S1 hook
+  tl.fromTo("#brag-hook1", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 0.3);
+  tl.fromTo("#brag-hook2", { y: 60, opacity: 0, scale: 0.96 }, { y: 0, opacity: 1, scale: 1, duration: 0.55, ease: "back.out(1.4)" }, 1.3);
+  // S2 console
+  tl.fromTo("#brag-console", { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 3.2);
+  tl.fromTo("#brag-bubble", { y: 40, opacity: 0, scale: 0.97 }, { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.6)" }, 4.3);
+  tl.to(".brag-ch", { opacity: 1, duration: 0.01, stagger: 0.028 }, 4.5);
+  tl.to("#brag-caret", { opacity: 0, duration: 0.2 }, 6.2);
+  // S3 trace steps (beat grid 7.5/8.5/9.5/10.5)
+  tl.fromTo("#brag-console2", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 7.1);
+  tl.fromTo("#brag-t1", { x: -60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, 7.4);
+  tl.fromTo("#brag-t2", { x: -60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, 8.0);
+  tl.fromTo("#brag-t3", { x: -60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, 8.6);
+  tl.fromTo("#brag-t4", { x: -60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, 9.2);
+  tl.fromTo("#brag-g1", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(1.8)" }, 9.7);
+  tl.fromTo("#brag-ge1", { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.3, ease: "power2.out" }, 9.9);
+  tl.fromTo("#brag-g2", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(1.8)" }, 10.0);
+  tl.fromTo("#brag-ge2", { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.3, ease: "power2.out" }, 10.2);
+  tl.fromTo("#brag-g3", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(1.8)" }, 10.3);
+  tl.fromTo("#brag-ans", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 10.7);
+  tl.fromTo("#brag-chips", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, 11.1);
+  tl.fromTo("#brag-ms", { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.8)" }, 11.4);
+  tl.to("#brag-console2", { opacity: 0, duration: 0.4, ease: "power1.in" }, 12.1);
+  // audio-reactive glow: RMS-driven opacity keys across S3 (deterministic, seek-safe)
+  tl.to("#traceglow", { opacity: 0.175, duration: 0.25, ease: "none", overwrite: "auto" }, 7.0);
+  tl.to("#traceglow", { opacity: 0.156, duration: 0.25, ease: "none", overwrite: "auto" }, 7.25);
+  tl.to("#traceglow", { opacity: 0.149, duration: 0.25, ease: "none", overwrite: "auto" }, 7.5);
+  tl.to("#traceglow", { opacity: 0.136, duration: 0.25, ease: "none", overwrite: "auto" }, 7.75);
+  tl.to("#traceglow", { opacity: 0.173, duration: 0.25, ease: "none", overwrite: "auto" }, 8.0);
+  tl.to("#traceglow", { opacity: 0.181, duration: 0.25, ease: "none", overwrite: "auto" }, 8.25);
+  tl.to("#traceglow", { opacity: 0.134, duration: 0.25, ease: "none", overwrite: "auto" }, 8.5);
+  tl.to("#traceglow", { opacity: 0.163, duration: 0.25, ease: "none", overwrite: "auto" }, 8.75);
+  tl.to("#traceglow", { opacity: 0.186, duration: 0.25, ease: "none", overwrite: "auto" }, 9.0);
+  tl.to("#traceglow", { opacity: 0.142, duration: 0.25, ease: "none", overwrite: "auto" }, 9.25);
+  tl.to("#traceglow", { opacity: 0.139, duration: 0.25, ease: "none", overwrite: "auto" }, 9.5);
+  tl.to("#traceglow", { opacity: 0.153, duration: 0.25, ease: "none", overwrite: "auto" }, 9.75);
+  tl.to("#traceglow", { opacity: 0.172, duration: 0.25, ease: "none", overwrite: "auto" }, 10.0);
+  tl.to("#traceglow", { opacity: 0.164, duration: 0.25, ease: "none", overwrite: "auto" }, 10.25);
+  tl.to("#traceglow", { opacity: 0.137, duration: 0.25, ease: "none", overwrite: "auto" }, 10.5);
+  tl.to("#traceglow", { opacity: 0.174, duration: 0.25, ease: "none", overwrite: "auto" }, 10.75);
+  tl.to("#traceglow", { opacity: 0.175, duration: 0.25, ease: "none", overwrite: "auto" }, 11.0);
+  tl.to("#traceglow", { opacity: 0.135, duration: 0.25, ease: "none", overwrite: "auto" }, 11.25);
+  tl.to("#traceglow", { opacity: 0.155, duration: 0.25, ease: "none", overwrite: "auto" }, 11.5);
+  tl.to("#traceglow", { opacity: 0.142, duration: 0.25, ease: "none", overwrite: "auto" }, 11.75);
+  // S4 numbers
+  tl.fromTo("#brag-num", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 12.8);
+  tl.to("#brag-numold", { opacity: 0, duration: 0.35, ease: "power2.in" }, 13.4);
+  tl.to("#brag-numval", { opacity: 1, duration: 0.35, ease: "power2.out" }, 13.5); // beat grid ~13.5s
+  tl.fromTo("#brag-beir", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 14.6);
+  tl.fromTo("#brag-beir", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 14.6);
+  tl.fromTo("#brag-pass", { scale: 0.85, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.6)" }, 17.0); // beat-locked: 17.02s
+  // S5 outro
+  tl.fromTo("#brag-outro", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 17.8);
+  tl.fromTo("#brag-slug", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" }, 19.0);
+  // scene exit fades (children only — framework owns .clip visibility)
+  tl.to("#brag-hook1, #brag-hook2", { opacity: 0, duration: 0.35, ease: "power1.in" }, 2.65);
+  tl.to("#brag-console", { opacity: 0, duration: 0.35, ease: "power1.in" }, 6.65);
+  tl.to("#brag-num, #brag-beir", { opacity: 0, duration: 0.35, ease: "power1.in" }, 17.15);
+  // music fade 19.5-21.5
+  tl.to("#brag-music", { volume: 0, duration: 2.0, ease: "power1.in" }, 19.5);
+  window.__timelines["brag"] = tl;
+})();
+</script>
+</div>
+</body>
+</html>

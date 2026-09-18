@@ -1,0 +1,10 @@
+{
+  "p@5": 0.338,
+  "r@5": 0.906,
+  "mrr": 0.919,
+  "ndcg@5": 0.89,
+  "faith": 0.878,
+  "rel": 0.938,
+  "gate": "PASS",
+  "config": "hybrid+rerank"
+}

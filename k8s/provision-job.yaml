@@ -1,0 +1,33 @@
+# One-shot collection provisioner: creates the collection and uploads vectors.json
+# so the API never talks to an empty Qdrant (which would 404 and fall back).
+#
+# SEPARATE FILE = SEPARATE LIFECYCLE (deliberate): Job specs are immutable, so a
+# Job bundled in deployment.yaml breaks every `kubectl apply` rerun and tangles
+# GitOps syncs. Apply this file exactly once per fresh cluster (or after wiping
+# Qdrant storage):
+#
+#   kubectl apply -f k8s/deployment.yaml   # long-lived services (repeatable)
+#   kubectl apply -f k8s/provision-job.yaml  # one-shot bootstrap (run once)
+#
+# Uses the API image (index baked in at build). Slow bulk loads: raise
+# activeDeadlineSeconds; smoke deploys can push a subset from CI instead.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: qdrant-provision
+spec:
+  backoffLimit: 2
+  activeDeadlineSeconds: 3600
+  ttlSecondsAfterFinished: 86400
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: provision
+          image: rag-showcase:1.0.0
+          env:
+            - { name: VECTOR_BACKEND, value: qdrant }
+            - { name: QDRANT_URL, value: "http://qdrant:6333" }
+          # --wait covers the StatefulSet startup race (no nc in slim images,
+          # so the readiness probe lives in the script itself: TCP then /readyz)
+          command: ["python", "scripts/push_qdrant.py", "--remote", "--wait", "600"]

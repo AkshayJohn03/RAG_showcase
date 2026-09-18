@@ -1,0 +1,1 @@
+We built a RAG system, then let hostile reviewers attack it six times — and published every failure next to every win. Dense-only recall 0.41; hybrid 0.91. Measured, not claimed.

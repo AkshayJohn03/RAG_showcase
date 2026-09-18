@@ -1,0 +1,114 @@
+[
+  {
+    "id": "q1_supplier_multihop",
+    "question": "Which supplier provides the component used in Product X?",
+    "answer_keywords": ["Nordwerk", "XK-7"],
+    "relevant_docs": ["supplier_registry.md", "product_catalog.md"],
+    "notes": "Multi-hop: Product X -> XK-7 -> Nordwerk. Tests GraphRAG + agent."
+  },
+  {
+    "id": "q2_safety_exact",
+    "question": "What does SAF-114 require?",
+    "answer_keywords": ["hot-work permit", "shift lead", "8 hours", "60"],
+    "relevant_docs": ["safety_policy.md"],
+    "notes": "Exact code. BM25 should beat pure dense."
+  },
+  {
+    "id": "q3_table",
+    "question": "Which units failed and what revision were they?",
+    "answer_keywords": ["X-101", "X-207", "rev B"],
+    "relevant_docs": ["q3_field_report.md"],
+    "notes": "Table reasoning. Chunk must not split rows."
+  },
+  {
+    "id": "q4_thermal",
+    "question": "At what temperature does jitter start on rev B, and what fixes it?",
+    "answer_keywords": ["40", "rev C", "Helios 4.2"],
+    "relevant_docs": ["q3_field_report.md", "product_catalog.md"],
+    "notes": "Cross-doc synthesis."
+  },
+  {
+    "id": "q5_distractor",
+    "question": "Is Aldercroft approved for XK-7?",
+    "answer_keywords": ["NOT approved", "failed"],
+    "relevant_docs": ["supplier_registry.md"],
+    "notes": "Negation + distractor. Tests faithfulness."
+  },
+  {
+    "id": "q6_warranty",
+    "question": "What warranty does Product X carry?",
+    "answer_keywords": ["36 months", "on-site"],
+    "relevant_docs": ["product_catalog.md"],
+    "notes": "Single-fact lookup amid 1.8k distractors."
+  },
+  {
+    "id": "q7_firmware",
+    "question": "What firmware is required for XK-7 timing calibration?",
+    "answer_keywords": ["Helios 4.2"],
+    "relevant_docs": ["product_catalog.md", "q3_field_report.md"],
+    "notes": "Entity + version lookup."
+  },
+  {
+    "id": "q8_leadtime",
+    "question": "What is Nordwerk's standard lead time for XK-7?",
+    "answer_keywords": ["3 weeks"],
+    "relevant_docs": ["supplier_registry.md"],
+    "notes": "Attribute of the multi-hop answer entity."
+  },
+  {
+    "id": "q9_permit_detail",
+    "question": "How long is a hot-work permit valid, and how long is fire watch required?",
+    "answer_keywords": ["8 hours", "60"],
+    "relevant_docs": ["safety_policy.md"],
+    "notes": "Two facts, one clause. Tests the answer isn't truncated to one."
+  },
+  {
+    "id": "q10_rejection_cause",
+    "question": "Why is Aldercroft not approved for XK-7?",
+    "answer_keywords": ["thermal qualification", "failed"],
+    "relevant_docs": ["supplier_registry.md"],
+    "notes": "Causal question; answer must not flip the polarity."
+  },
+  {
+    "id": "q11_parental_leave",
+    "question": "How much parental leave is offered?",
+    "answer_keywords": ["12 weeks", "paid"],
+    "relevant_docs": ["hr_leave_policy.md"],
+    "notes": "Single-fact HR lookup; LEA-201 exact code nearby."
+  },
+  {
+    "id": "q12_rate_limit",
+    "question": "What is the rate limit for submitting scan jobs?",
+    "answer_keywords": ["100", "minute"],
+    "relevant_docs": ["api_reference.md"],
+    "notes": "Endpoint + number lookup; API-009 distractor code."
+  },
+  {
+    "id": "q13_sla_penalty",
+    "question": "What penalty applies for late XK-7 delivery?",
+    "answer_keywords": ["5%", "week"],
+    "relevant_docs": ["supplier_sla.md"],
+    "notes": "Cross-doc: SLA extends the supplier_registry entity."
+  },
+  {
+    "id": "q14_jitter_fix_version",
+    "question": "Which Helios version fixed the rev B jitter defect?",
+    "answer_keywords": ["4.2"],
+    "relevant_docs": ["firmware_changelog.md", "q3_field_report.md"],
+    "notes": "Changelog synthesis; 4.0 must not win."
+  },
+  {
+    "id": "q15_return_window",
+    "question": "What is the return window for unopened units?",
+    "answer_keywords": ["30 days"],
+    "relevant_docs": ["returns_policy.md"],
+    "notes": "Must not confuse with 36-month warranty."
+  },
+  {
+    "id": "q16_key_rotation",
+    "question": "How often must production API keys be rotated?",
+    "answer_keywords": ["90 days"],
+    "relevant_docs": ["security_policy.md", "api_reference.md"],
+    "notes": "Policy fact mirrored in API docs (SEC-301)."
+  }
+]

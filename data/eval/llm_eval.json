@@ -1,0 +1,159 @@
+{
+  "summary": {
+    "p@5": 0.338,
+    "r@5": 0.906,
+    "mrr": 0.919,
+    "ndcg@5": 0.89,
+    "faith": 0.719,
+    "rel": 0.948,
+    "gate": "PASS",
+    "config": "hybrid+rerank"
+  },
+  "per_question": [
+    {
+      "id": "q1_supplier_multihop",
+      "p@5": 0.6,
+      "r@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@5": 1.0,
+      "faithfulness": 0.5,
+      "relevance": 1.0
+    },
+    {
+      "id": "q2_safety_exact",
+      "p@5": 0.4,
+      "r@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@5": 1.0,
+      "faithfulness": 0.667,
+      "relevance": 1.0
+    },
+    {
+      "id": "q3_table",
+      "p@5": 0.2,
+      "r@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@5": 1.0,
+      "faithfulness": 0.25,
+      "relevance": 1.0
+    },
+    {
+      "id": "q4_thermal",
+      "p@5": 0.4,
+      "r@5": 0.5,
+      "mrr": 1.0,
+      "ndcg@5": 0.613,
+      "faithfulness": 1.0,
+      "relevance": 0.667
+    },
+    {
+      "id": "q5_distractor",
+      "p@5": 0.4,
+      "r@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@5": 1.0,
+      "faithfulness": 0.5,
+      "relevance": 1.0
+    },
+    {
+      "id": "q6_warranty",
+      "p@5": 0.6,
+      "r@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@5": 1.0,
+      "faithfulness": 0.667,
+      "relevance": 0.5
+    },
+    {
+      "id": "q7_firmware",
+      "p@5": 0.4,
+      "r@5": 0.5,
+      "mrr": 0.5,
+      "ndcg@5": 0.387,
+      "faithfulness": 0.75,
+      "relevance": 1.0
+    },
+    {
+      "id": "q8_leadtime",
+      "p@5": 0.4,
+      "r@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@5": 1.0,
+      "faithfulness": 1.0,
+      "relevance": 1.0
+    },
+    {
+      "id": "q9_permit_detail",
+      "p@5": 0.2,
+      "r@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@5": 1.0,
+      "faithfulness": 0.667,
+      "relevance": 1.0
+    },
+    {
+      "id": "q10_rejection_cause",
+      "p@5": 0.4,
+      "r@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@5": 1.0,
+      "faithfulness": 0.5,
+      "relevance": 1.0
+    },
+    {
+      "id": "q11_parental_leave",
+      "p@5": 0.2,
+      "r@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@5": 1.0,
+      "faithfulness": 1.0,
+      "relevance": 1.0
+    },
+    {
+      "id": "q12_rate_limit",
+      "p@5": 0.2,
+      "r@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@5": 1.0,
+      "faithfulness": 1.0,
+      "relevance": 1.0
+    },
+    {
+      "id": "q13_sla_penalty",
+      "p@5": 0.2,
+      "r@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@5": 1.0,
+      "faithfulness": 0.667,
+      "relevance": 1.0
+    },
+    {
+      "id": "q14_jitter_fix_version",
+      "p@5": 0.2,
+      "r@5": 0.5,
+      "mrr": 0.2,
+      "ndcg@5": 0.237,
+      "faithfulness": 0.667,
+      "relevance": 1.0
+    },
+    {
+      "id": "q15_return_window",
+      "p@5": 0.2,
+      "r@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@5": 1.0,
+      "faithfulness": 0.667,
+      "relevance": 1.0
+    },
+    {
+      "id": "q16_key_rotation",
+      "p@5": 0.4,
+      "r@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@5": 1.0,
+      "faithfulness": 1.0,
+      "relevance": 1.0
+    }
+  ],
+  "n": 16
+}

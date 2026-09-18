@@ -1,0 +1,31 @@
+{"ts": "2026-09-17T15:30:57.843866+00:00", "summary": {"p@5": 0.6, "r@5": 1.0, "mrr": 1.0, "ndcg@5": 0.706, "faith": 1.0, "rel": 0.85, "gate": "PASS"}, "strategy": ""}
+{"ts": "2026-09-17T15:31:06.994316+00:00", "summary": {"p@5": 0.6, "r@5": 1.0, "mrr": 1.0, "ndcg@5": 0.706, "faith": 1.0, "rel": 0.85, "gate": "PASS"}, "strategy": ""}
+{"ts": "2026-09-17T15:34:59.435608+00:00", "summary": {"p@5": 0.6, "r@5": 1.0, "mrr": 1.0, "ndcg@5": 0.706, "faith": 1.0, "rel": 0.85, "gate": "PASS"}, "strategy": "parent_child"}
+{"ts": "2026-09-17T15:35:43.494170+00:00", "summary": {"p@5": 0.6, "r@5": 1.0, "mrr": 1.0, "ndcg@5": 0.706, "faith": 1.0, "rel": 0.85, "gate": "PASS"}, "strategy": ""}
+{"ts": "2026-09-17T16:19:47.966026+00:00", "summary": {"p@5": 0.6, "r@5": 1.0, "mrr": 1.0, "ndcg@5": 0.706, "faith": 1.0, "rel": 0.85, "gate": "PASS"}, "strategy": ""}
+{"ts": "2026-09-17T16:42:24.519416+00:00", "summary": {"p@5": 0.42, "r@5": 0.95, "mrr": 0.875, "ndcg@5": 0.515, "faith": 0.95, "rel": 0.625, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T16:42:51.039764+00:00", "summary": {"p@5": 0.42, "r@5": 0.95, "mrr": 0.875, "ndcg@5": 0.515, "faith": 0.95, "rel": 0.625, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T16:44:48.332820+00:00", "summary": {"p@5": 0.44, "r@5": 0.9, "mrr": 1.0, "ndcg@5": 0.578, "faith": 0.967, "rel": 0.725, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T17:36:25.297619+00:00", "summary": {"p@5": 0.44, "r@5": 0.9, "mrr": 1.0, "ndcg@5": 0.578, "faith": 0.917, "rel": 0.817, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T17:38:27.511039+00:00", "summary": {"p@5": 0.44, "r@5": 0.9, "mrr": 1.0, "ndcg@5": 0.578, "faith": 0.967, "rel": 0.725, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T20:07:43.198803+00:00", "summary": {"p@5": 0.44, "r@5": 0.9, "mrr": 1.0, "ndcg@5": 0.578, "faith": 0.967, "rel": 0.725, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T20:31:52.839249+00:00", "summary": {"p@5": 0.338, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.45, "faith": 0.906, "rel": 0.766, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T20:32:28.163095+00:00", "summary": {"p@5": 0.338, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.45, "faith": 0.906, "rel": 0.766, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T20:37:10.889225+00:00", "summary": {"p@5": 0.338, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.45, "faith": 1.0, "rel": 0.766, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T20:44:27.665317+00:00", "summary": {"p@5": 0.338, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.45, "faith": 1.0, "rel": 0.766, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T21:03:52.994809+00:00", "summary": {"p@5": 0.338, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 1.166, "faith": 0.922, "rel": 0.766, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T21:04:54.947105+00:00", "summary": {"p@5": 0.338, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.894, "faith": 0.922, "rel": 0.766, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T21:06:23.966568+00:00", "summary": {"p@5": 0.338, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.894, "faith": 0.735, "rel": 0.948, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T21:08:26.453100+00:00", "summary": {"p@5": 0.338, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.894, "faith": 0.922, "rel": 0.766, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T21:25:20.610521+00:00", "summary": {"p@5": 0.338, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.89, "faith": 0.906, "rel": 0.766, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T21:25:35.933565+00:00", "summary": {"p@5": 0.338, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.89, "faith": 0.906, "rel": 0.766, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T21:27:50.338182+00:00", "summary": {"p@5": 0.338, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.89, "faith": 0.872, "rel": 0.938, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T21:28:04.962571+00:00", "summary": {"p@5": 0.338, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.89, "faith": 0.872, "rel": 0.938, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T21:30:18.772425+00:00", "summary": {"p@5": 0.338, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.89, "faith": 0.878, "rel": 0.938, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T21:30:44.405955+00:00", "summary": {"p@5": 0.338, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.89, "faith": 0.878, "rel": 0.938, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T21:35:29.905199+00:00", "summary": {"p@5": 0.338, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.89, "faith": 0.678, "rel": 0.948, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T21:56:39.978860+00:00", "summary": {"p@5": 0.338, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.89, "faith": 0.878, "rel": 0.938, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-17T21:58:41.568681+00:00", "summary": {"p@5": 0.338, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.89, "faith": 0.719, "rel": 0.948, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-18T07:03:31.744480+00:00", "summary": {"p@5": 0.338, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.89, "faith": 0.878, "rel": 0.938, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-18T07:34:55.005049+00:00", "summary": {"p@5": 0.35, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.89, "faith": 0.878, "rel": 0.938, "gate": "PASS", "config": "hybrid+rerank+agent"}, "strategy": ""}
+{"ts": "2026-09-18T07:35:09.915868+00:00", "summary": {"p@5": 0.338, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.89, "faith": 0.878, "rel": 0.938, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
