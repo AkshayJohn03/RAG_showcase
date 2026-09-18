@@ -15,9 +15,22 @@ raw docs → clean → chunk (sliding / semantic / parent-child) → embed → h
 
 <video src="brag-output/brag.mp4" poster="brag-output/brag.jpg" width="100%" controls></video>
 
-No video element where you're reading this? The files are `brag-output/brag.mp4`
-(poster: `brag.jpg`, caption: `share-copy.txt`). Built with the brag skill;
-composition source in `brag-output/composition/`.
+*Not rendering where you're reading this? Play `brag-output/brag.mp4` directly
+(poster `brag.jpg`, caption `share-copy.txt`).*
+
+A 21-second launch cut for the console above: the hook (*"Most RAG demos are API
+wrappers"*), the real UI recreated (ink header, trace steps, citation chips),
+the ablation punchline (**dense-only recall 0.41 → hybrid 0.91**), the BEIR
+credibility beat (nDCG@10 0.659, ColBERT territory), and the outro —
+*"Measured, not claimed."* 1920×1080 with sound, poster baked as frame 0 so
+every platform thumbnail shows the tagline.
+
+Built with the [brag skill](https://github.com/latent-spaces/brag) on Hyperframes:
+storyboard in `brag-output/brag-plan.md`, handoff brief in
+`brag-output/composition-brief.md`, full composition source (timed HTML + GSAP +
+beat-locked audio) in `brag-output/composition/` — re-renders in ~40s.
+Music: Sascha Ende (ende.app, CC BY 4.0); SFX: Kenney (CC0) — see
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ## License
 

@@ -30,8 +30,8 @@ echo [4/5] Starting frontend on :3000 ...
 if not exist "frontend\node_modules" (echo First run: installing frontend deps - one-time, a few minutes... ^& pushd frontend ^& npm install ^& popd)
 start "RAG Frontend :3000" /d "%~dp0frontend" cmd /k npm run dev
 
-echo [5/5] Waiting for frontend, then opening everything...
-powershell -NoProfile -Command "$d=[datetime]::Now.AddMinutes(4); while((Get-Date) -lt $d){ try { Invoke-WebRequest -UseBasicParsing -Uri 'http://localhost:3000/' -TimeoutSec 5 | Out-Null; exit 0 } catch {}; Start-Sleep -Seconds 4 }; exit 1"
+echo [5/5] Waiting for frontend (Nuxt compiles on first boot - several minutes, watch the Frontend window)...
+powershell -NoProfile -Command "$d=[datetime]::Now.AddMinutes(7); while((Get-Date) -lt $d){ try { $r=Invoke-WebRequest -UseBasicParsing -Uri 'http://localhost:3000/' -TimeoutSec 10; if($r.StatusCode -eq 200){ exit 0 } } catch {}; Start-Sleep -Seconds 5 }; exit 1"
 if errorlevel 1 (echo [WARN] frontend is slow - open http://localhost:3000/ manually in a minute.) else (start "" "http://localhost:3000/")
 start "" "http://127.0.0.1:8000/docs"
 if exist "brag-output\brag.mp4" (start "" "%~dp0brag-output\brag.mp4")
