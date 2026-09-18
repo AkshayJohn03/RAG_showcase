@@ -74,6 +74,17 @@ def ingest(req: IngestRequest):
             "stdout": r.stdout[-2000:], "stderr": r.stderr[-2000:]}
 
 
+def _needs_coref(query: str) -> bool:
+    """Anaphora gate: expand with history entities only when the query cannot
+    stand alone — contains a pronoun (it/its/they/this/...) or is too short to
+    carry its own entities. Anything else retrieves on its own terms."""
+    import re
+    q = query.lower()
+    if re.search(r"\b(it|its|they|them|their|this|that|these|those|he|she|him|her)\b", q):
+        return True
+    return len(re.findall(r"[a-z0-9]+", q)) <= 4
+
+
 def _retrieve(req: QueryRequest, qvec: list[float]):
     """Shared retrieval + prep stage. Returns (ranked, trace, safe_q, safe_ctx, prompt)."""
     from backend.app.retrieval.hybrid import hybrid_search
@@ -84,11 +95,11 @@ def _retrieve(req: QueryRequest, qvec: list[float]):
     from backend.app.retrieval.graph import extract_entities
 
     rquery, expansion = req.query, []
-    if req.session_id:
-        # conversational retrieval: resolve follow-ups ("what is its warranty?")
-        # by expanding with graph entities from prior turns — retrieval sees
-        # "What is its warranty? Product X", not the bare anaphoric query.
-        # Entity names only (never raw history text: bounds noise + PII spread).
+    if req.session_id and _needs_coref(req.query):
+        # conversational retrieval ONLY for anaphoric follow-ups ("what is ITS
+        # warranty?"). Unconditional expansion poisoned unrelated questions:
+        # history entities ("Product X") hijacked "what are the leave policies"
+        # into supplier docs. Anaphora-gating fixes it.
         for turn in recall(req.session_id):
             for e in extract_entities(turn.get("q", "")):
                 if e.lower() not in rquery.lower() and e not in expansion and len(expansion) < 3:

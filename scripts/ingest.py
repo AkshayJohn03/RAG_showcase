@@ -53,9 +53,11 @@ def main():
     new_hashes, all_chunks, reused, rebuilt = {}, [], 0, 0
     clean_in, clean_out = 0, 0
     for d in raw:
-        h = hashlib.sha256(d["text"].encode("utf-8")).hexdigest()[:16]
-        new_hashes[d["doc_id"]] = h
         cleaned, report = clean_text(d["text"])
+        # hash the CLEANED text: cleaner-rule changes must invalidate vectors
+        # (hashing raw text silently kept stale embeddings after cleaning fixes)
+        h = hashlib.sha256(cleaned.encode("utf-8")).hexdigest()[:16]
+        new_hashes[d["doc_id"]] = h
         clean_in += report["chars_in"]
         clean_out += report["chars_out"]
         cleaned_path = (ROOT / "data" / "02_cleaned" / d["doc_id"]).with_suffix(".txt")
@@ -140,6 +142,15 @@ def main():
              "docs_with_overlap": sum(1 for v in by_doc.values() if len(v) > 1)}
     print(f"[ingest] clean {clean_in}->{clean_out} chars (-{stats['clean_reduction_pct']}%), "
           f"avg_chunk={stats['avg_chunk_tokens']} tok, mean_overlap={stats['mean_consecutive_overlap']}")
+    # scaffolding watchlist: fail loudly if dev notes ever reach the index again
+    WATCH = ["vector-only query", "why this document exists", "test query:",
+             "relational note", "row-level fact tests"]
+    leaks = [(c["chunk_id"]) for c in all_chunks
+             if any(w in c["text"].lower() for w in WATCH)]
+    if leaks:
+        print(f"[ingest] WARNING: scaffolding leaked into {len(leaks)} chunks: {leaks[:5]}")
+    else:
+        print("[ingest] scaffolding watchlist: clean (0 leaks)")
     manifest = {"strategy": args.strategy, "docs": len(raw), "chunks_total": len(all_chunks),
                 "indexed": len(indexed), "triples": len(triples), **stats}
     (ROOT / "data" / "04_vectors" / "manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")

@@ -1,5 +1,8 @@
 # HR Leave Policy — Extract (rev 2026-02)
 
+Company leave policies: this document describes the time-off rules for all
+employees, including parental leave, balances, and carryover.
+
 ## Parental leave
 Clause **LEA-201**: 12 weeks fully paid parental leave for birth or adoption,
 usable within 12 months of the event. Applies after 6 months of tenure.

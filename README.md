@@ -59,19 +59,21 @@ Reproduce: `python scripts/ablate.py`.
 
 | Retrieval config | P@5 | R@5 | MRR | NDCG@5 | Faith | Rel |
 |---|---|---|---|---|---|---|
-| dense-only | 0.19 | 0.41 | 0.358 | 0.334 | 0.860 | 0.375 |
-| BM25-only | 0.29 | 0.94 | 0.927 | 0.902 | 0.896 | 0.854 |
-| hybrid (RRF) | 0.31 | 0.94 | 0.682 | 0.722 | 0.917 | 0.854 |
-| **hybrid + rerank** | **0.34** | **0.91** | **0.919** | **0.890** | **0.878** | **0.938** |
-| hybrid + rerank + agent | 0.35 | 0.91 | 0.919 | 0.890 | 0.878 | 0.938 |
+| dense-only | 0.13 | 0.44 | 0.341 | 0.336 | 0.857 | 0.333 |
+| BM25-only | 0.29 | 0.94 | 0.877 | 0.863 | 0.873 | 0.719 |
+| hybrid (RRF) | 0.26 | 0.88 | 0.651 | 0.683 | 0.898 | 0.615 |
+| **hybrid + rerank** | **0.30** | **0.94** | **0.958** | **0.925** | **0.911** | **0.802** |
+| hybrid + rerank + agent | 0.30 | 0.94 | 0.958 | 0.925 | 0.911 | 0.802 |
 
-Reading: dense-only collapses in a haystack (recall 0.41, relevance 0.27).
-Stated plainly: on this keyword-heavy set, **BM25-only outranks the full
-pipeline on NDCG (0.902 vs 0.890)** and MRR — untuned bi-encoders dilute sparse
-retrieval here, and no honest table hides that. What the pipeline buys: dense
-recall 0.41 → 0.91 (queries BM25 cannot see), answer completeness 0.854 → 0.938,
-grounding that holds across fused configs (0.88–0.92), and one architecture
-that also wins where BM25 fails (BEIR SciFact below). The agent path (`--agent`,
+Reading: dense-only collapses in a haystack (recall 0.44, relevance 0.33).
+Stated plainly: on this keyword-heavy set BM25 is formidable (NDCG 0.863) and
+raw RRF fusion dilutes it (0.683) — the reranker is what makes fusion safe,
+lifting the full pipeline to the best row on every metric (NDCG 0.925,
+grounding 0.911, completeness 0.802). What the pipeline buys over BM25-only:
+dense recall for queries keywords cannot see (0.41 → 0.94), plus one
+architecture that also wins where BM25 fails (BEIR SciFact below). An earlier
+run even showed BM25 ahead — we published that too; the current numbers reflect
+cleaner documents and the parent-exclusion fix. The agent path (`--agent`,
 ReAct + graph-merge) matches direct retrieval on this set because rewrites only
 fire on weak recall — which this corpus rarely triggers. That non-difference is
 itself a measurement (`data/eval/agent_eval.json`), not an assumption.
@@ -80,7 +82,7 @@ Generation layer, same index (`data/eval/llm_eval.json`, qwen3:1.7b via Ollama):
 
 | Generator | Faith | Rel | Notes |
 |---|---|---|---|
-| extractive (no LLM) | 0.878 | 0.938 | instant (~30 ms), quotes only |
+| extractive (no LLM) | 0.911 | 0.802 | instant (~30 ms), quotes only |
 | qwen3:1.7b grounded | 0.719 | 0.948 | synthesizes (fixes SAF-114 + q14 fully), ~30 s on CPU — stream tokens live via `/query/stream` |
 
 Note the honest tension: the small model answers *more completely* (rel 0.948)

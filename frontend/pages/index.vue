@@ -103,8 +103,23 @@
           </ol>
           <p v-else class="mt-2 text-sm text-stone-400">Ask a question to see the pipeline think.</p>
           <div v-if="graphTriples.length" class="mt-3">
-            <h3 class="text-sm font-semibold">Knowledge graph hops</h3>
-            <ul class="mt-1 space-y-1 font-mono text-xs">
+            <h3 class="text-sm font-semibold">Knowledge graph</h3>
+            <svg v-if="graphLayout" :viewBox="`0 0 ${graphLayout.W} ${graphLayout.H}`" class="mt-2 w-full" role="img" aria-label="Knowledge graph visualization">
+              <defs>
+                <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M 0 1 L 9 5 L 0 9" fill="none" stroke="#57534E" stroke-width="1.6" />
+                </marker>
+              </defs>
+              <g v-for="(e, i) in graphLayout.edges" :key="'e'+i">
+                <line :x1="e.x1" :y1="e.y1" :x2="e.x2" :y2="e.y2" stroke="#A8A29E" stroke-width="2" marker-end="url(#arr)" />
+                <text :x="(e.x1 + e.x2) / 2" :y="(e.y1 + e.y2) / 2 - 8" text-anchor="middle" font-size="11" fill="#78716C" font-style="italic">{{ e.r }}</text>
+              </g>
+              <g v-for="(n, i) in graphLayout.nodes" :key="'n'+i">
+                <rect :x="n.x - 8" :y="n.y - 20" rx="16" :width="n.w + 16" height="34" fill="#FAF7F1" stroke="#1F3D2B" stroke-width="2" />
+                <text :x="n.x" :y="n.y + 4" text-anchor="middle" font-size="13" font-weight="600" fill="#1C1917">{{ n.label }}<title>{{ n.full }}</title></text>
+              </g>
+            </svg>
+            <ul class="mt-2 space-y-1 font-mono text-xs">
               <li v-for="(g, i) in graphTriples" :key="i" class="rounded bg-stone-100 px-2 py-1">{{ g.s }} —{{ g.r }}→ {{ g.o }}</li>
             </ul>
           </div>
@@ -181,6 +196,55 @@ const selected = ref<any>(null)
 const health = ref<any>(null)
 const evalRes = ref<any>(null)
 const verify = ref<any>(null)
+const graphLayout = computed(() => {
+  const triples = (graphTriples.value || []).slice(0, 8)
+  if (!triples.length) return null
+  // BFS layers from the first subject; node width scales with label
+  const depth = new Map()
+  const start = triples[0].s
+  depth.set(start, 0)
+  let frontier = [start]
+  for (let d = 1; d <= 3 && frontier.length; d++) {
+    const next = []
+    for (const t of triples) {
+      if (frontier.includes(t.s) && !depth.has(t.o)) { depth.set(t.o, d); next.push(t.o) }
+      if (frontier.includes(t.o) && !depth.has(t.s)) { depth.set(t.s, d); next.push(t.s) }
+    }
+    frontier = next
+  }
+  const all = [...new Set(triples.flatMap(t => [t.s, t.o]))]
+  all.forEach(n => { if (!depth.has(n)) depth.set(n, 3) })
+  const cols = new Map()
+  all.forEach(n => {
+    const d = depth.get(n)
+    if (!cols.has(d)) cols.set(d, [])
+    cols.get(d).push(n)
+  })
+  const pos = new Map()
+  let maxY = 60
+  ;[...cols.entries()].sort((a, b) => a[0] - b[0]).forEach(([d, ns]) => {
+    ns.forEach((n, i) => {
+      const label = n.length > 18 ? n.slice(0, 17) + '…' : n
+      const w = Math.max(70, label.length * 8.2)
+      const x = 20 + d * 175 + w / 2
+      const y = 46 + i * 62
+      pos.set(n, { x, y, w, label, full: n })
+      maxY = Math.max(maxY, y + 34)
+    })
+  })
+  const maxD = Math.max(...depth.values())
+  const W = 40 + maxD * 175 + 170
+  const edges = triples.map(t => {
+    const a = pos.get(t.s), b = pos.get(t.o)
+    if (!a || !b) return null
+    const dx = b.x - a.x, dy = b.y - a.y
+    const len = Math.hypot(dx, dy) || 1
+    const r1 = a.w / 2 + 4, r2 = b.w / 2 + 10
+    return { x1: a.x + (dx / len) * r1, y1: a.y + (dy / len) * r1,
+             x2: b.x - (dx / len) * r2, y2: b.y - (dy / len) * r2, r: t.r }
+  }).filter(Boolean)
+  return { nodes: [...pos.values()], edges, W, H: maxY }
+})
 const evalMetrics = computed(() => {
   if (!evalRes.value?.summary) return {}
   return Object.fromEntries(Object.entries(evalRes.value.summary).filter(([k]) => k !== 'gate'))

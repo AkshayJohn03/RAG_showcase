@@ -9,8 +9,21 @@ TOK = re.compile(r"[a-z0-9]+(?:[-_/][a-z0-9]+)*")
 # module-level relative paths here — they break when cwd != repo root.
 
 
+def _stem(tok: str) -> str:
+    """Identity stemmer (stemming DISABLED by measurement, not by dogma).
+
+    A Porter-lite pass was tried: it fixed 'policies'→'policy' but blew up the
+    matching pool — 'units'→'unit' matches every hardware post mentioning
+    'power supply unit', drowning the q3 field-report table (recall 1.0→0.0).
+    Exact-form matching plus well-worded documents beat stemming here; the
+    ablation numbers prove it. Kept as a function so the experiment is one
+    line to revive with `--stem` if a future corpus wants it.
+    """
+    return tok
+
+
 def tokenize(s: str) -> list[str]:
-    return TOK.findall(s.lower())
+    return [_stem(t) for t in TOK.findall(s.lower())]
 
 
 class PureBM25:

@@ -84,8 +84,31 @@ def test_context_tag_breakout_sanitized():
 
 
 def test_code_regex_case_insensitive():
-    from backend.app.retrieval.reranker import CODE
+    from backend.app.retrieval.reranker import CODE, _heuristic
     assert CODE.findall("saf-114") and CODE.findall("xk-7")
+    # end-to-end (not just regex): lowercase query vs uppercase doc boosts
+    lo = _heuristic("what does saf-114 require?", "clause SAF-114 hot-work permit signed")
+    hi = _heuristic("what does saf-114 require?", "general bench work esd controls")
+    assert lo > hi
+
+
+def test_coref_gate_blocks_unrelated_history():
+    import sys
+    sys.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parents[1]))
+    from backend.app.api.routes import _needs_coref
+    assert _needs_coref("What is its warranty period?") is True
+    assert _needs_coref("What does it cover?") is True
+    # full standalone questions must NOT inherit history entities (poisoning)
+    assert _needs_coref("what are the leave policies in the company") is False
+    assert _needs_coref("Which supplier provides the component used in Product X?") is False
+
+
+def test_no_stemming_by_measurement():
+    # documents the deliberate decision: Porter-lite ("units"->"unit") matched
+    # every hardware post mentioning "power supply unit" and drowned the field
+    # report (recall 1.0 -> 0.0). Exact-form matching won the ablation.
+    from backend.app.retrieval.bm25 import _stem
+    assert _stem("units") == "units" and _stem("policies") == "policies"
 
 
 def test_xff_uses_rightmost_trusted_hop(monkeypatch):

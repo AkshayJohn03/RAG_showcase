@@ -29,3 +29,9 @@
 {"ts": "2026-09-18T07:03:31.744480+00:00", "summary": {"p@5": 0.338, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.89, "faith": 0.878, "rel": 0.938, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
 {"ts": "2026-09-18T07:34:55.005049+00:00", "summary": {"p@5": 0.35, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.89, "faith": 0.878, "rel": 0.938, "gate": "PASS", "config": "hybrid+rerank+agent"}, "strategy": ""}
 {"ts": "2026-09-18T07:35:09.915868+00:00", "summary": {"p@5": 0.338, "r@5": 0.906, "mrr": 0.919, "ndcg@5": 0.89, "faith": 0.878, "rel": 0.938, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-18T14:45:18.036939+00:00", "summary": {"p@5": 0.3, "r@5": 0.938, "mrr": 0.927, "ndcg@5": 0.911, "faith": 0.865, "rel": 0.823, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-18T14:49:09.057468+00:00", "summary": {"p@5": 0.275, "r@5": 0.875, "mrr": 0.896, "ndcg@5": 0.862, "faith": 0.906, "rel": 0.74, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-18T14:49:26.618738+00:00", "summary": {"p@5": 0.275, "r@5": 0.875, "mrr": 0.896, "ndcg@5": 0.862, "faith": 0.906, "rel": 0.74, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-18T14:49:46.865723+00:00", "summary": {"p@5": 0.275, "r@5": 0.875, "mrr": 0.896, "ndcg@5": 0.862, "faith": 0.906, "rel": 0.74, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-18T14:51:56.648650+00:00", "summary": {"p@5": 0.3, "r@5": 0.938, "mrr": 0.958, "ndcg@5": 0.925, "faith": 0.911, "rel": 0.802, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
+{"ts": "2026-09-18T14:53:33.456457+00:00", "summary": {"p@5": 0.3, "r@5": 0.938, "mrr": 0.958, "ndcg@5": 0.925, "faith": 0.911, "rel": 0.802, "gate": "PASS", "config": "hybrid+rerank"}, "strategy": ""}
