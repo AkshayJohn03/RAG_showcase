@@ -176,7 +176,7 @@
     </main>
 
     <footer class="mx-auto max-w-6xl px-5 pb-8 text-xs text-stone-500">
-      <p>Solid colors, real citations, keyboard accessible. No gradients, no emoji icons — per ui-ux-pro-max review.</p>
+      <p>Meridian RAG Console — grounded answers with citations. Eval gate must stay green.</p>
     </footer>
   </div>
 </template>

@@ -13,10 +13,11 @@ raw docs → clean → chunk (sliding / semantic / parent-child) → embed → h
 
 ## Demo video (21s)
 
-<video src="brag-output/brag.mp4" poster="brag-output/brag.jpg" width="100%" controls></video>
+[![Watch the demo: Senior RAG Showcase, 21s](brag-output/brag.jpg)](https://github.com/AkshayJohn03/RAG_showcase/blob/master/brag-output/brag.mp4)
 
-*Not rendering where you're reading this? Play `brag-output/brag.mp4` directly
-(poster `brag.jpg`, caption `share-copy.txt`).*
+*Click the thumbnail to play with sound. (GitHub doesn't render repo-hosted
+`<video>` tags inline — the thumbnail links straight to the playable file.
+A native inline player just needs a `user-attachments` URL; see below.)*
 
 A 21-second launch cut for the console above: the hook (*"Most RAG demos are API
 wrappers"*), the real UI recreated (ink header, trace steps, citation chips),
